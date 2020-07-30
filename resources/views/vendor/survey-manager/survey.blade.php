@@ -33,7 +33,7 @@
 
         <div class="row">
                     <div class="panel-body" id="surveyElement">
-                        <survey-show :survey-data="{{ json_encode($survey) }}" ></survey-show>
+                    <survey-show :selectedphone = "{{$selectedphone}}":survey-data="{{ json_encode($survey) }}" ></survey-show>
                     </div>
 
             </div>

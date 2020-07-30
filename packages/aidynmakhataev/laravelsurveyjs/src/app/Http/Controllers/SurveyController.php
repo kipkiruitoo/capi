@@ -8,6 +8,7 @@ use Auth;
 use App\Incomplete;
 use App\Respondent;
 use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
+use App\PhoneNumber;
 
 class SurveyController extends Controller
 {
@@ -20,9 +21,11 @@ class SurveyController extends Controller
     public function runSurvey($phone)
     {
         // dd($request);
+        // dd($phone);
         $survey = Survey::where('id', 71)->first();
         $survey = $survey->toArray();
 
+        $phonenum =  PhoneNumber::find($phone)->phone;
         // $incomplete  =  Incomplete::where('id', $request->respondent)->latest()->take(1)->get();
         // if (Incomplete::where('respondent', $request->respondent)->exists()) {
         //     # code...
@@ -44,7 +47,7 @@ class SurveyController extends Controller
             'phonenumber' => $phone,
             // 'incomplete' => $jsondata,
             // 'respondent' => Respondent::where('id', $request->respondent)->get(),
-            // 'selectedphone' => $request->phonenumber,
+            'selectedphone' => $phonenum,
             'agent' => Auth::user()->id,
             // 'callsession' => $request->callsession
         ]);

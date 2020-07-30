@@ -86,17 +86,14 @@ export default {
     this.survey = new SurveyVue.Model(this.surveyData.json);
     // console.log(this.survey)
     console.log(this.surveyData);
-    var result = {
-      Q8: {
-        "1": "715686316",
-      },
-    };
+
     this.survey.sendResultOnPageNext = true;
     this.nit = this.surveyData.num;
     this.agent = this.surveyData[0];
     console.log(this.agent);
     this.project = this.surveyData.project;
     this.sid = this.surveyData.id;
+
     // this.respondent = this.surveyData[0];
     // this.jsondata = JSON.stringify(this.jsonData);
     this.phonenumber = this.selectedphone;
@@ -137,7 +134,13 @@ export default {
     } else {
       this.showsurvey = true;
     }
+    this.survey.data = {
+      Q8: {
+        "1": this.selectedphone,
+      },
+    };
 
+    this.survey.data = result;
     this.survey.onComplete.add((result) => {
       console.log(this.phone);
       let url = `/survey/${this.surveyData.id}/result`;
