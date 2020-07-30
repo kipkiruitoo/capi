@@ -7,7 +7,7 @@
       <hr />
       <hr />
       <div class="row">
-          <h2>Feedback</h2>
+        <h2>Feedback</h2>
         <form>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -34,22 +34,22 @@ import * as widgets from "surveyjs-widgets";
 
 Object.filter = (obj, predicate) =>
   Object.keys(obj)
-    .filter(key => predicate(obj[key]))
+    .filter((key) => predicate(obj[key]))
     .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {});
 
 const widgetsList = Object.filter(
   SurveyConfig.widgets,
-  widget => widget === true
+  (widget) => widget === true
 );
 
-Object.keys(widgetsList).forEach(function(widget) {
+Object.keys(widgetsList).forEach(function (widget) {
   widgets[widget](SurveyVue);
 });
 
 export default {
   name: "survey-result",
   components: {
-    Survey
+    Survey,
   },
   data() {
     return {
@@ -61,7 +61,7 @@ export default {
       surveyId: this.$route.params.id,
       interview: this.$route.params.interview,
       page: 1,
-      pageLength: 1
+      pageLength: 1,
     };
   },
   mounted() {
@@ -71,25 +71,29 @@ export default {
     page() {
       this.getSurveyResults();
       this.surveyData.data = this.results.json;
-    }
+    },
   },
   methods: {
     getSurveyResults(id = this.surveyId, interview = this.interview) {
       this.loading = true;
       axios
         .get("/survey/" + id + "/result/" + interview + "?page=" + this.page)
-        .then(response => {
+
+        .then((response) => {
+         console.log(response)
           this.results = response.data.data;
+          console.log(response.data.data);
           this.survey = response.data.meta.survey;
           this.pageLength = Math.ceil(
             response.data.meta.total / response.data.meta.per_page
           );
           this.loading = false;
-          this.surveyData = new SurveyVue.Model(response.data.meta.survey.json);
-          this.surveyData.mode = "display";
+          this.surveyData = new SurveyVue.Model(response.data[0].json);
+          //   this.surveyData.mode = "display";
           this.surveyData.data = this.results[0].json;
+            console.log(this.surveyData.data);
         })
-        .catch(error => {
+        .catch((error) => {
           console.info(error.response);
           this.loading = false;
         });
@@ -97,7 +101,7 @@ export default {
     showSurvey(result) {
       this.dialog = true;
       this.surveyData.data = result.json;
-    }
-  }
+    },
+  },
 };
 </script>

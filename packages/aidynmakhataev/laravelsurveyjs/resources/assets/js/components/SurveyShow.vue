@@ -43,25 +43,27 @@ import * as widgets from "surveyjs-widgets";
 
 Object.filter = (obj, predicate) =>
   Object.keys(obj)
-    .filter(key => predicate(obj[key]))
+    .filter((key) => predicate(obj[key]))
     .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {});
 
 const widgetsList = Object.filter(
   SurveyConfig.widgets,
-  widget => widget === true
+  (widget) => widget === true
 );
 
-Object.keys(widgetsList).forEach(function(widget) {
+Object.keys(widgetsList).forEach(function (widget) {
   widgets[widget](SurveyVue);
 });
 
 export default {
   components: {
-    Survey
+    Survey,
   },
   props: ["surveyData", "selectedphone", "callSession", "jsonData"],
 
   data() {
+    var url = window.location.href.split("/");
+    // console.log(url);
     return {
       survey: {},
       respondent: "",
@@ -76,14 +78,19 @@ export default {
       slocale: "en",
       requiredate: false,
       showsurvey: false,
-      nit: 1
+      nit: 1,
+      phone: url.pop(),
     };
   },
   created() {
     this.survey = new SurveyVue.Model(this.surveyData.json);
     // console.log(this.survey)
     console.log(this.surveyData);
-
+    var result = {
+      Q8: {
+        "1": "715686316",
+      },
+    };
     this.survey.sendResultOnPageNext = true;
     this.nit = this.surveyData.num;
     this.agent = this.surveyData[0];
@@ -104,24 +111,26 @@ export default {
       this.survey.locale = this.slocale;
       console.log(this.slocale);
       this.survey.render();
-    }
+    },
   },
   computed: {
     formattedDate() {
       return this.date ? format(this.date, "dddd, MMMM Do YYYY") : "";
-    }
+    },
   },
   watch: {
     page() {
       //   this.loadResults();
-      this.survey.sendResultOnPageNext = true;
+      //   this.survey.sendResultOnPageNext = true;
       this.survey.data = this.jsondata;
+
       // console.log(this.survey.data);
-    }
+    },
   },
   mounted() {
     this.survey.sendResultOnPageNext = true;
     // this.loadResults();
+    console.log(this.$route);
     if (this.project == 24) {
       this.requiredate = true;
       //   this.showsurvey = true;
@@ -129,7 +138,8 @@ export default {
       this.showsurvey = true;
     }
 
-    this.survey.onComplete.add(result => {
+    this.survey.onComplete.add((result) => {
+      console.log(this.phone);
       let url = `/survey/${this.surveyData.id}/result`;
       axios
         .post(url, {
@@ -139,19 +149,21 @@ export default {
           survey: this.sid,
           callsession: window.CallSession,
           phonenumber: this.phonenumber,
+          phone: this.phone,
           project: this.surveyData.project,
-          date: this.date
+          date: this.date,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.count++;
           localStorage.setItem("count", this.count);
-            localStorage.setItem("reload", 1);
+          localStorage.setItem("reload", 1);
           console.log(this.count);
           if (this.count == this.nit) {
             this.$toastr.s("Interview Successfully Finished");
             // window.location.assign("/agent/project/33");
-            window.history.back();
+            // window.history.back();
+            window.location = "/agent";
           } else {
             this.survey.clear();
             this.$toastr.i(
@@ -162,31 +174,7 @@ export default {
           }
         });
     });
-    this.survey.onPartialSend.add(result => {
-      let url = "/incomplete";
-      var resultAsString = JSON.stringify(this.survey.getPlainData);
-      // alert(resultAsString); //send Ajax request to your web server.
-      axios
-        .post(url, {
-          json: result.data,
-          agent: this.agent,
-          //   respondent: this.respondent.respondent,
-          survey: this.sid,
-          // phonenumber: this.phonenumber,
-          project: this.surveyData.project
-          // date: this.date
-        })
-        .then(result => {
-          console.log(result);
-          if (result.data.message === "Success") {
-            this.$toastr.i("Progress Successfully Saved");
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    });
-  }
+  },
 };
 </script>
 <style lang="scss">

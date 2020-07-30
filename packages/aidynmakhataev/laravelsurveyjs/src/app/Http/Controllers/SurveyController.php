@@ -17,10 +17,10 @@ class SurveyController extends Controller
      */
 
 
-    public function runSurvey(Request $request)
+    public function runSurvey($phone)
     {
         // dd($request);
-        $survey = Survey::where('slug', $request->survey)->first();
+        $survey = Survey::where('id', 71)->first();
         $survey = $survey->toArray();
 
         // $incomplete  =  Incomplete::where('id', $request->respondent)->latest()->take(1)->get();
@@ -41,6 +41,7 @@ class SurveyController extends Controller
         array_push($survey, Auth::user()->id);
         return view('survey-manager::survey', [
             'survey'    =>  $survey,
+            'phonenumber' => $phone,
             // 'incomplete' => $jsondata,
             // 'respondent' => Respondent::where('id', $request->respondent)->get(),
             // 'selectedphone' => $request->phonenumber,

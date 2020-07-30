@@ -19,7 +19,7 @@
 
     <div class="container">
       <div class="row">
-      <button  onclick="window.history.back()" class="btn btn-dark"> <span><i class="fa fa-chevron-left"></i> Go Back</span> </button>
+      {{-- <button  onclick="window.history.back()" class="btn btn-dark"> <span><i class="fa fa-chevron-left"></i> Go Back</span> </button> --}}
       </div>
         {{-- <div class="row">
             <h4>You Are interviewing:</h4>
@@ -33,7 +33,7 @@
 
         <div class="row">
                     <div class="panel-body" id="surveyElement">
-                    <survey-show :survey-data="{{ json_encode($survey) }}" ></survey-show>
+                        <survey-show :survey-data="{{ json_encode($survey) }}" ></survey-show>
                     </div>
 
             </div>
@@ -42,4 +42,12 @@
     <script> window.SurveyConfig = {!! json_encode(config('survey-manager')) !!};</script>
 
     <script src="{{ asset('vendor/survey-manager/js/survey-front.js') }}"></script>
+
+    <script>
+        // var primaryphone = document.getElementById("sq_108i");
+        //     primaryphone.addEventListener("change", function check(e) {
+        //     console.log(e);
+        //     alert(e);
+        // });
+    </script>
 @endsection

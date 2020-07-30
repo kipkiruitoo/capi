@@ -28,11 +28,8 @@ class SurveyResultAPIController extends Controller
     public function show(Survey $survey, $interview)
     {
         $inter = Interview::find($interview);
-        $results = $survey->results()->where('interview', $interview)->paginate(config('survey-manager.pagination_perPage', 10));
-        return SurveyResultResource::collection($results)
-            ->additional(['meta' => [
-                'survey'    =>  new SurveyResource($survey),
-            ]]);
+        $results = $survey->results()->where('interview', $interview)->get()->first();
+        return array("result" => $results->json, "survey" => $survey);
     }
     /**
      * @param Survey $survey
@@ -50,6 +47,7 @@ class SurveyResultAPIController extends Controller
         Log::info($request);
         $interview = new Interview;
         $agent =  $request->input('agent');
+        // $phone = $request->phone;
         $respondent = $request->input('respondent');
         //  print_r($agent->agent);
         //  echo "<br><hr>";
@@ -58,7 +56,7 @@ class SurveyResultAPIController extends Controller
         // print_r($request->input('project'));
         $interview->agent = $agent;
         $interview->survey = $request->input('survey');
-        // $interview->phonenumber = $request->input('phonenumber');
+        $interview->phone = $request->input('phone');
         $interview->project = $request->input('project');
         // $interview->call_session = $request->input('callsession');
         // $interview->respondent = $respondent;
@@ -72,6 +70,8 @@ class SurveyResultAPIController extends Controller
             ]);
             DB::table('incomplete')->where('respondent', '=', $respondent)->delete();
             DB::insert('insert into feedback (respondent_id, feedback, agent) values (?, ?, ?)', [$respondent, 'Successful', Auth::id()]);
+            session()->flash("message", "Successfully Recruited");
+            session()->flash('alert-type', "success");
         } else {
             $result = "An error occured";
         }

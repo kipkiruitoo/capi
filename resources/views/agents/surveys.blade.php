@@ -23,14 +23,14 @@
                         <!-- <input type="text" class="form-control"> -->
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-dark ">New Interview</button>
+                        <button type="submit" class="btn btn-dark ">New  Recruit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="row">
-        <h4>Your most recent Interviews</h4>
+        <h4>Your most recent Recruits</h4>
         <div class="col col-md-12">
             <table class="table">
                 <thead>
@@ -59,7 +59,7 @@
 
         </div>
         <div class="col col-md-12">
-{{ $interviews->links() }}
+            {{ $interviews->links() }}
         </div>
     </div>
 </div>

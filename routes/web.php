@@ -150,3 +150,9 @@ Route::get('/survey/tool/{survey}', 'SurveyController@getSurveyTool')->name('sur
 Route::get('/import/view', 'UserController@page')->name('users.view');
 Route::post('/users/import', 'UserController@import')->name('users.import');
 Route::get('/survey/structure/{survey}', 'SurveyController@getSurveyStrucrure')->name('surveystructure');
+
+
+Route::post('phone/confirm', 'RecruitmentController@store')->name('confirm_phone');
+
+
+Route::post('phone/confirm/otp', 'RecruitmentController@confirm_otp')->name('confirm_otp');
