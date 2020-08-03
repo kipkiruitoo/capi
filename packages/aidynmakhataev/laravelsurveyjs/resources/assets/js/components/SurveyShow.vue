@@ -140,7 +140,7 @@ export default {
       },
     };
 
-    this.survey.data = result;
+    // this.survey.data = result;
     this.survey.onComplete.add((result) => {
       console.log(this.phone);
       let url = `/survey/${this.surveyData.id}/result`;
