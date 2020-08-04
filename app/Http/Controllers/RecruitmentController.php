@@ -117,6 +117,7 @@ class RecruitmentController extends Controller
         // store otp for confimation later
         $phonenumber =  new PhoneNumber();
         $phonenumber->phone = $phone;
+        $phonenumber->user_id =  Auth::user()->id;
         $phonenumber->otp = $otp;
 
         if ($phonenumber->save()) {
