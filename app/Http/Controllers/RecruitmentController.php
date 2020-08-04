@@ -7,6 +7,7 @@ use AfricasTalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\Validator;
 use App\PhoneNumber;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class RecruitmentController extends Controller
