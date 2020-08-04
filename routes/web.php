@@ -154,5 +154,5 @@ Route::get('/survey/structure/{survey}', 'SurveyController@getSurveyStrucrure')-
 
 Route::post('phone/confirm', 'RecruitmentController@store')->name('confirm_phone');
 
-
+Route::post('/api/phone/resend', 'RecruitmentController@resend_otp')->name('resend_otp');
 Route::post('phone/confirm/otp', 'RecruitmentController@confirm_otp')->name('confirm_otp');

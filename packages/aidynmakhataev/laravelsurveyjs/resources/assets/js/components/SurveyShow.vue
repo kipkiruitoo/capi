@@ -136,7 +136,7 @@ export default {
     }
     this.survey.data = {
       Q8: {
-        "1": this.selectedphone,
+        primary: this.selectedphone,
       },
     };
 
@@ -166,7 +166,7 @@ export default {
             this.$toastr.s("Interview Successfully Finished");
             // window.location.assign("/agent/project/33");
             // window.history.back();
-            window.location = "/agent";
+            // window.location = "/agent";
           } else {
             this.survey.clear();
             this.$toastr.i(

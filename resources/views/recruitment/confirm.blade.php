@@ -31,6 +31,7 @@
 
     </div>
 </div>
+<script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
 <script>
     let timerOn = true;
 
@@ -68,7 +69,20 @@ timer(30);
 
 
 function resend(){
-    alert("resending");
+    let url = "{{route('resend_otp')}}";
+    let phone = "{{$phone}}";
+    // alert("resending");
+
+    axios.post(url, {phone:phone}).then(result=>{
+        console.log(result)
+        if (
+            result === 'success'
+        ) {
+            toastr['success']("successfully resent the code, please check the phone number if you don't receive this code")
+        }
+    }).catch(error=>{
+        console.log(error)
+    });
 }
 </script>
 

@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use App\Interview;
 use App\Feedback;
 use App\Incomplete;
+use App\Respondent;
 
 use Illuminate\Support\Facades\Log;
 use Auth;
@@ -72,6 +73,8 @@ class SurveyResultAPIController extends Controller
             DB::insert('insert into feedback (respondent_id, feedback, agent) values (?, ?, ?)', [$respondent, 'Successful', Auth::id()]);
             session()->flash("message", "Successfully Recruited");
             session()->flash('alert-type', "success");
+            // dd($request->input('json'));
+            $this->addrespondent($request->input('json'));
         } else {
             $result = "An error occured";
         }
@@ -82,5 +85,46 @@ class SurveyResultAPIController extends Controller
             'data'      =>  $result,
             'message'   =>  'Survey Result successfully created',
         ], 201);
+    }
+
+
+    public function addrespondent($respondent)
+    {
+
+        // dd($respondent);
+
+        // dd($respondent["Q11"]);
+        // DB::enableQueryLog();
+        // $res->save()->tosql()
+
+        $res = new Respondent;
+
+
+        $res->name = $respondent["Q2"];
+        $res->project = 61;
+        $res->phone = $respondent["Q8"]["primary"];
+        // 'phone1' => $respondent[5],
+
+
+        $res->county = $respondent["Q10"];
+
+        $res->education = $respondent["Q5"];
+        $res->sex = $respondent["Q4"];
+        $res->lsm = $respondent["Q12"];
+
+        $res->status = 'Active';
+        $res->district = $respondent["Q11"]["District"];
+        $res->division = $respondent["Q11"]["Division"];
+        $res->location = $respondent["Q11"]["Location"];
+        $res->sublocation = $respondent["Q11"]["Sub-location"];
+
+        if ($res->save()) {
+            $res->spedules()->create([
+                'schedule' => $respondent["time"],
+                'date' => $respondent["date"]
+            ]);
+        }
+
+        // dd(DB::getQueryLog());
     }
 }

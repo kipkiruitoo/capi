@@ -177,4 +177,49 @@ class RecruitmentController extends Controller
             return view('recruitment.confirm', compact('phone'))->with(['message' => "An Sms Verification Code has been sent to the Mobile Phone ", 'alert-type' => 'success']);
         }
     }
+
+    public function resend_otp(Request $request)
+    {
+        // dd($request);
+        $otp = PhoneNumber::where('phone', $request->phone)->get()->last()->otp;
+        // dd($otp);
+        $username   = "tifasms";
+        $apiKey     = "dd89d44a8ef0f1d1627180f8316a4661b3a84ebd931789d3270a86887de5b429";
+
+
+        // Initialize the SDK
+        $AT         = new AfricasTalking($username, $apiKey);
+
+        // Get the SMS service
+        $sms        = $AT->sms();
+
+        // Set the numbers you want to send to in international format
+        $recipients = "+254" . $request->phone;
+
+        // Set your message
+        $message    = "Your Mobile Verification code is: " . $otp;
+
+        // Set your shortCode or senderId
+        $from       = "20384";
+        $keyword = "Tifa";
+        try {
+            // Thats it, hit send and we'll take care of the rest
+            $result = $sms->send([
+                'to'      => $recipients,
+                'message' => $message,
+                'from'    => $from,
+                'keyword' => $keyword
+            ]);
+
+            Log::info($result);
+
+            return "success";
+            // print_r($result);
+        } catch (\Exception $e) {
+            // echo "Error: " . $e->getMessage();
+
+            Log::error($e->getMessage());
+            return "error";
+        }
+    }
 }
