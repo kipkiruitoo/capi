@@ -34,7 +34,8 @@
             <hr>
             <p>
                 Habari ya asubuhi/ mchana. Jina langu ni ___________. Nimetoka TIFA kampuni huru ya utafiti. Hivi sasa tunachanga watu
-                 kama wewe kuwa miongoni mwa jopo ambayo tunajihusisha nao wakati moja hadi mwingine ili kupata maoni kuhusu maswala yanayoathiri
+                 kama wewe kuwa miongoni mwa jopo ambayo tunajihusisha nao wakati moja hadi mwingine ili kupata maoni kuhusu maswala
+                    yanayoathiri
                   jamii.Ukikubali kujiunga na jopo hili leo, utajumuishwa katika utafiti wetu wa kwanza ambayo utapewa Shilingi 100 kama mjazo wa
                    simu. Kutakuwa na utafiti zingine mingi ambayo utazawadiwa kwa njia tofauti. Tafadhali kumbuka kuwa habari yote itawekwa kwa
                     siri. <br> <hr>
