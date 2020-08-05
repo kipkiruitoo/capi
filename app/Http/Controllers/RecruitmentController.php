@@ -125,8 +125,7 @@ class RecruitmentController extends Controller
             // Set your app credentials
             $username   = "tifasms";
             $apiKey     = "dd89d44a8ef0f1d1627180f8316a4661b3a84ebd931789d3270a86887de5b429";
-
-
+            
             // Initialize the SDK
             $AT         = new AfricasTalking($username, $apiKey);
 

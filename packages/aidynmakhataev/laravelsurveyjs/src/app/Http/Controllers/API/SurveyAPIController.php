@@ -8,7 +8,7 @@ use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResource;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Requests\CreateSurveyRequest;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Requests\UpdateSurveyRequest;
 
-class SurveyAPIController extends Controller
+class SurveyAPIController extends Controller 
 {
     public function index()
     {
