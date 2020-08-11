@@ -39,13 +39,14 @@ class RecruitmentController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone' => 'required|numeric',
+            'phone' => 'required|unique:respondents,phone|numeric',
         ], [
 
 
 
             'phone.required' => ' The phone number field is required.',
             'phone.numeric' => ' The phone number should not contain letters.',
+            'phone.unique' => 'The phone number is already in our database'
             // 'phone.between' => ' The phone number entered should not be longer than 14  characters and not shorter than 9 characters.',
             // 'phone.min' => ' The phone number entered should not be less than 10 characters.',
 
@@ -124,8 +125,8 @@ class RecruitmentController extends Controller
         if ($phonenumber->save()) {
             // Set your app credentials
             $username   = "tifasms";
-            $apiKey     = "dd89d44a8ef0f1d1627180f8316a4661b3a84ebd931789d3270a86887de5b429";
-            
+            $apiKey     = "87df4cf587cb9c1b278f8fbfd8d6ae4c174130bd1969800ae17a145a313b63b2";
+
             // Initialize the SDK
             $AT         = new AfricasTalking($username, $apiKey);
 
