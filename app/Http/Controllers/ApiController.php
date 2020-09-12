@@ -21,6 +21,6 @@ class ApiController extends Controller
     {
         $surveys = Survey::where('project', $project)->get();
 
-        return response()->json(["success" => true, 'survey' => $surveys->toArray()]);
+        return response()->json(["success" => true, 'surveys' => $surveys->toArray()]);
     }
 }
