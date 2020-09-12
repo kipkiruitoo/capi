@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('projects', 'ApiController@projects')->middleware("auth:api");
+Route::get('surveys/{project}', 'ApiController@surveys')->middleware("auth:api");
 Route::apiResource('media', 'MediaController');
 
 Route::group(['prefix' => 'v1'], function () {
