@@ -38,4 +38,9 @@ class Survey extends Model
     {
         return $this->hasMany('AidynMakhataev\LaravelSurveyJs\app\Models\SurveyResult', 'survey_id');
     }
+
+    public function project()
+    {
+        return $this->belongsTo('App\Projects');
+    }
 }

@@ -23,4 +23,9 @@ class Projects extends Model
     {
         return $this->hasManyThrough('App\Call', 'App\Respondent', 'project', 'respondent');
     }
+
+    public function agents()
+    {
+        return $this->hasMany('App\User');
+    }
 }
