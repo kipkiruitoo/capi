@@ -23,5 +23,5 @@ Route::apiResource('media', 'MediaController');
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/login', 'UserController@login');
-    Route::get('/logout', 'UsesController@logout')->middleware('auth:api');
+    Route::get('/logout', 'UserController@logout')->middleware('auth:api');
 });
