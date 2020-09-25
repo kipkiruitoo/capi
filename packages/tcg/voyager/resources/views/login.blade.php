@@ -6,7 +6,8 @@
     <meta name="robots" content="none" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="admin login">
-    <title>Admin - {{ Voyager::setting("admin.title") }}</title>
+    <title>Sondage - CAPI MANAGEMENT SYSTEM</title>
+     @include('meta::manager')
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
     @if (__('voyager::generic.is_rtl') == 'true')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css">
@@ -89,7 +90,7 @@
                         <input type="checkbox" name="remember" id="remember" value="1"><label for="remember" class="remember-me-text">{{ __('voyager::generic.remember_me') }}</label>
                         </div>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-block login-button">
                         <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
                         <span class="signin">{{ __('voyager::generic.login') }}</span>
