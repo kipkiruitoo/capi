@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
 
+    @include('meta::manager')
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -79,7 +80,7 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 ?>
 
 <div class="app-container">
-    
+
     <div class="fadetoblack visible-xs"></div>
     <div class="row content-container">
         @include('voyager::dashboard.navbar')
