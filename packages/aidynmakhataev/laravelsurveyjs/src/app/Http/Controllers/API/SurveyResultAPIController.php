@@ -118,12 +118,12 @@ class SurveyResultAPIController extends Controller
         $res->location = $respondent["Q11"]["Location"];
         $res->sublocation = $respondent["Q11"]["Sub-location"];
 
-        // if ($res->save()) {
-        //     $res->spedules()->create([
-        //         'schedule' => $respondent["time"],
-        //         'date' => $respondent["date"]
-        //     ]);
-        // }
+        if ($res->save()) {
+            $res->spedules()->create([
+                'schedule' => $respondent["time"],
+                'date' => $respondent["date"]
+            ]);
+        }
 
         // dd(DB::getQueryLog());
     }
