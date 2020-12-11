@@ -110,7 +110,7 @@ class SurveyResultAPIController extends Controller
 
         $res->education = $respondent["Q5"];
         $res->sex = $respondent["Q4"];
-        $res->lsm = $respondent["Q12"];
+        $res->lsm = "Urban";
 
         $res->status = 'Active';
         $res->district = $respondent["Q11"]["District"];
@@ -118,12 +118,12 @@ class SurveyResultAPIController extends Controller
         $res->location = $respondent["Q11"]["Location"];
         $res->sublocation = $respondent["Q11"]["Sub-location"];
 
-        if ($res->save()) {
-            $res->spedules()->create([
-                'schedule' => $respondent["time"],
-                'date' => $respondent["date"]
-            ]);
-        }
+        // if ($res->save()) {
+        //     $res->spedules()->create([
+        //         'schedule' => $respondent["time"],
+        //         'date' => $respondent["date"]
+        //     ]);
+        // }
 
         // dd(DB::getQueryLog());
     }
