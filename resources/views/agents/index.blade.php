@@ -36,10 +36,10 @@
                 Habari ya asubuhi/ mchana. Jina langu ni ___________. Nimetoka TIFA kampuni huru ya utafiti. Hivi sasa tunachanga watu
                  kama wewe kuwa miongoni mwa jopo ambayo tunajihusisha nao wakati moja hadi mwingine ili kupata maoni kuhusu maswala
                     yanayoathiri
-                  jamii.Ukikubali kujiunga na jopo hili leo, utajumuishwa katika utafiti wetu wa kwanza ambayo utapewa Shilingi 100 kama mjazo wa
+                  jamii.Ukikubali kujiunga na jopo hili leo, utajumuishwa katika utafiti wetu wa kwanza ambayo utapewa Shilingi hamsini kama mjazo wa
                    simu. Kutakuwa na utafiti zingine mingi ambayo utazawadiwa kwa njia tofauti. Tafadhali kumbuka kuwa habari yote itawekwa kwa
                     siri. <br> <hr>
-                Good morning/ afternoon.  My name is ____________.  I am from TIFA an independent research organization. We are currently recruiting people like you to be part of a panel that we engage time to time to get opinion on matters affecting society.\nIf you accept to join this panel today, you will be involved in our first survey in which you will be compensated Kshs. 100 in the form of airtime. There will
+                Good morning/ afternoon.  My name is ____________.  I am from TIFA an independent research organization. We are currently recruiting people like you to be part of a panel that we engage time to time to get opinion on matters affecting society.\nIf you accept to join this panel today, you will be involved in our first survey in which you will be compensated Kshs. 50 in the form of airtime. There will
                  be many other studies in which you will be compensated differently. Please note all information will be kept confidential.
             </p>
         </div>
