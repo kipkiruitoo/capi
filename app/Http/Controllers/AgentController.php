@@ -284,7 +284,7 @@ class AgentController extends Controller
 
             if ($call->save()) {
                 # code...
-                new ChangeCallStatus($results['data']->entries[0]->sessionId, "started");
+                // new ChangeCallStatus($results['data']->entries[0]->sessionId, "started");
                 return response()->json(["message" => "Call Initiated", "sessionId" => $results['data']->entries[0]->sessionId]);
             } else {
             }
@@ -379,7 +379,7 @@ class AgentController extends Controller
         $callSessionState = $_POST['callSessionState'];
         $sessionId = $request->sessionId;
 
-        broadcast(new ChangeCallStatus($sessionId, $callSessionState));
+        // broadcast(new ChangeCallStatus($sessionId, $callSessionState));
 
         Log::warning($request);
     }
