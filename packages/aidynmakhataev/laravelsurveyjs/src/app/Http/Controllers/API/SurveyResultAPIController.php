@@ -41,7 +41,13 @@ class SurveyResultAPIController extends Controller
     {
         $request->validate([
             'json'  =>  'required',
+
         ]);
+
+
+        if (Respondent::where('phone', $request->input('selectedphone'))->exists()) {
+            return null;
+        }
         // echo $request->input('respondent');
         // Log::debug($request->input('respondent'));
 
