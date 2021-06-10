@@ -148,6 +148,7 @@ export default {
         .post(url, {
           json: this.survey.data,
           agent: this.agent,
+          selectedphone: this.selectedphone,
           respondent: this.respondent.respondent,
           survey: this.sid,
           callsession: window.CallSession,

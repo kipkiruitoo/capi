@@ -37,7 +37,7 @@ class SurveyController extends Controller
         // } else {
         //     $jsondata = "no results";
         //     $jsondata = json_encode(json_decode($jsondata));
-        // }
+        // } 
 
         // print_r($survey) ;
         // array_push($survey, ["respondent" => $request->respondent]);

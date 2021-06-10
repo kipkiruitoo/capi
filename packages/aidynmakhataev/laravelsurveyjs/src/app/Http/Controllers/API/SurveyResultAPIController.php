@@ -74,7 +74,7 @@ class SurveyResultAPIController extends Controller
             session()->flash("message", "Successfully Recruited");
             session()->flash('alert-type', "success");
             // dd($request->input('json'));
-            $this->addrespondent($request->input('json'));
+            $this->addrespondent($request->input('json'), $request->input('selectedphone'));
         } else {
             $result = "An error occured";
         }
@@ -88,35 +88,29 @@ class SurveyResultAPIController extends Controller
     }
 
 
-    public function addrespondent($respondent)
+    public function addrespondent($respondent,  $primaryPhone)
     {
-
-        // dd($respondent);
-
-        // dd($respondent["Q11"]);
-        // DB::enableQueryLog();
-        // $res->save()->tosql()
 
         $res = new Respondent;
 
 
-        $res->name = $respondent["Q2"];
-        $res->project = 75;
-        $res->phone = $respondent["Q8"]["primary"];
+        $res->name = $respondent["Q1"];
+        $res->project = 89;
+        $res->phone = $primaryPhone;
         // 'phone1' => $respondent[5],
 
 
-        $res->county = $respondent["Q10"];
-
-        $res->education = $respondent["Q5"];
-        $res->sex = $respondent["Q4"];
-        $res->lsm = "Urban";
+        $res->county = $respondent["Q8"];
+        $res->age = $respondent["Q2"];
+        $res->education = $respondent["Q4"];
+        $res->sex = $respondent["Q3"];
+        // $res->lsm = "Urban";
 
         $res->status = 'Active';
-        $res->district = $respondent["Q11"]["District"];
-        $res->division = $respondent["Q11"]["Division"];
-        $res->location = $respondent["Q11"]["Location"];
-        $res->sublocation = $respondent["Q11"]["Sub-location"];
+        $res->district = $respondent["Q9"]["District"];
+        $res->division = $respondent["Q9"]["Division"];
+        $res->location = $respondent["Q9"]["Location"];
+        $res->sublocation = $respondent["Q9"]["Sub-location"];
 
         if ($res->save()) {
             $res->spedules()->create([
@@ -124,7 +118,5 @@ class SurveyResultAPIController extends Controller
                 'date' => $respondent["date"]
             ]);
         }
-
-        // dd(DB::getQueryLog());
     }
 }
