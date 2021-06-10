@@ -69,6 +69,7 @@
 
 
     </div>
+    <div class="row" style="background-color: red; color:white; height: 40px; width:100%; text-align:center; padding-top: 10px;">Any Fraudelent behaviour will be penalized</div>
 </div>
 <script>
 var radios = document.getElementsByName("consent");
