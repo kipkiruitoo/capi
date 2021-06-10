@@ -6,6 +6,7 @@ use AfricasTalking\SDK\AfricasTalking;
 
 use Illuminate\Support\Facades\Validator;
 use App\PhoneNumber;
+use App\Respondent;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class RecruitmentController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone' => 'required|unique:respondents,phone|numeric',
+            'phone' => 'required|unique:respondents,phone, $id|numeric',
         ], [
 
 
@@ -52,6 +53,14 @@ class RecruitmentController extends Controller
 
         ]);
         $validator->validate();
+
+        // dd($request->phone);
+
+        if (Respondent::where('phone', (int) $request->input('phone'))->exists()) {
+            session()->flash("message", "Phone Number Already in database");
+            session()->flash('alert-type', "error");
+            return redirect()->back()->with(['message' => 'Phone Number Already in database', 'alert-type' => 'error']);
+        }
 
         // dd($request->phone);
         if ($this->sendOtp($request->phone) == true) {
